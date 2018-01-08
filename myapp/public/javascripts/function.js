@@ -4,13 +4,13 @@ function send() {
     var noidung = document.getElementById("nd2");
 
     if (goi1.value == "" || ngay1.value == "" || noidung.value == "") {
-      alert("Nhap thieu noi dung");
+      alert("Nhap thieu thong tin");
     }
     else {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-          alert(xhttp.responseText);
+          alert("Gui thanh cong");
         }
       }
 
@@ -31,7 +31,7 @@ function send() {
     var ctr = document.createElement("tr");
     var ctd = document.createElement("td");
     if (goi2.value == "" || ngay2.value == "") {
-      alert("Nhap thieu");
+      alert("Chon thieu thong tin");
     }
     else {
       var tb = document.getElementsByTagName('tbody')[0];
