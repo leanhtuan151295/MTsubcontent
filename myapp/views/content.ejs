@@ -1,0 +1,115 @@
+<html>
+
+<head>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="/stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/javascripts/datepicker/css/datepicker.css">
+  <script src="/javascripts/function.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+
+    <div style="margin-top: -2%">
+      <h1 id=tt>MTsubcontent</h1>
+
+      <form method="POST" action="/content">
+        <p id="goi">Gói</p>
+        <select class="form-control col-sm-6" id="list1" name="list1">
+          <option selected="selected" hidden="hidden"></option>
+          <option name=ANH value=ANH> ANH </option>
+          <option name=XSLA value=XSLA> XSLA </option>
+          <option name=BOI value=BOI> BOI </option>
+          <option name=MAY value=MAY> MAY </option>
+          <option name=MT value=MT> MT </option>
+          <option name=XSMB value=XSMB> XSMB </option>
+          <option name=MN value=MN> MN </option>
+          <option name=XS value=XS> XS </option>
+          <option name=BAO value=BAO> BAO </option>
+          <option name=TN value=TN> TN </option>
+          <option name=BL value=BL> BL </option>
+        </select>
+        <p id="ngay">Ngày</p>
+        <input type="text" id="timeCheck1" class="form-control" readonly="readonly" name="timeCheck1" placeholder="Chọn ngày">
+
+        <p id="nd1">Nội dung</p>
+        <textarea id="nd2" style="resize: none;" name="nd2" placeholder="Nhập nội dung"></textarea>
+        <input type="button" id="nhap" value="Nhập" onclick="send()" />
+      </form>
+    </div>
+
+    <div id="filter">
+      <form action="/get-content?">
+        <p id="goi">Gói</p>
+        <select class="form-control col-sm-6" id="list2" name="code">
+          <option selected="selected" hidden="hidden"></option>
+          <option name=ANH value=ANH> ANH </option>
+          <option name=XSLA value=XSLA> XSLA </option>
+          <option name=BOI value=BOI> BOI </option>
+          <option name=MAY value=MAY> MAY </option>
+          <option name=MT value=MT> MT </option>
+          <option name=XSMB value=XSMB> XSMB </option>
+          <option name=MN value=MN> MN </option>
+          <option name=XS value=XS> XS </option>
+          <option name=BAO value=BAO> BAO </option>
+          <option name=TN value=TN> TN </option>
+          <option name=BL value=BL> BL </option>
+        </select>
+        <p id="ngay2">Ngày</p>
+        <input type="text" id="timeCheck2" class="form-control" readonly="readonly" name="date" placeholder="Chọn ngày">
+        <input type="button" id="loc" value="Lọc" onclick="filter()" />
+
+        <table class="table table-hover">
+          <thead>
+            <tr class="something">
+              <th class="col-sm-1">Gói</th>
+              <th class="col-sm-2">Ngày</th>
+              <th class="col-sm-9">Nội dung</th>
+            </tr>
+          </thead>
+          <tbody id="tablebody">
+          </tbody>
+        </table>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="/javascripts/jquery-1.11.2.min.js"></script>
+  <script src="/stylesheets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="/javascripts/datepicker/js/bootstrap-datepicker.js"></script>
+  <script>
+    $(function () {
+      'use strict';
+      var nowTemp = new Date();
+      var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+      var checkin = $('#timeCheck1').datepicker({
+        onRender: function (date) {
+          return date.valueOf() < now.valueOf() ? 'disabled' : '';
+        }
+      }).on('changeDate', function () {
+        checkin.hide();
+      }).data('datepicker');
+
+    });
+  </script>
+  <script>
+    $(function () {
+      'use strict';
+      var nowTemp = new Date();
+      var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+      var checkin = $('#timeCheck2').datepicker({
+        onRender: function (date) {
+          return true;
+        }
+      }).on('changeDate', function () {
+        checkin.hide();
+      }).data('datepicker');
+
+    });
+  </script>
+</body>
+
+</html>
